@@ -2,36 +2,36 @@
 
 @font-face {
     font-family: "mont";
-    src: url(../CSS/assets/font/MontserratAlternates-Regular.ttf);
+    src: url(../css/assets/font/MontserratAlternates-Regular.ttf);
     font-weight: 400;
 }
 
 @font-face {
     font-family: "mont";
-    src: url(../CSS/assets/font/MontserratAlternates-Black.ttf);
+    src: url(../css/assets/font/MontserratAlternates-Black.ttf);
     font-weight: 900;
 }
 
 @font-face {
     font-family: "mont";
-    src: url(../CSS/assets/font/MontserratAlternates-Bold.ttf);
+    src: url(../css/assets/font/MontserratAlternates-Bold.ttf);
     font-weight: 800;
 }
 
 @font-face {
     font-family: "mont";
-    src: url(../CSS/assets/font/MontserratAlternates-SemiBold.ttf);
+    src: url(../css/assets/font/MontserratAlternates-SemiBold.ttf);
     font-weight: 600;
 }
 
 @font-face {
     font-family: "pre";
-    src: url(../CSS/assets/font/Pretendard-Bold.woff2);
+    src: url(../css/assets/font/Pretendard-Bold.woff2);
 }
 
 @font-face {
     font-family: "pre-nomal";
-    src: url(../CSS/assets/font/MontserratAlternates-Regular.ttf);
+    src: url(../css/assets/font/MontserratAlternates-Regular.ttf);
 }
 
 
@@ -111,7 +111,7 @@ body {
     background-color: var(--bg-white-color);
     color: var(--black-color);
     overflow-x: hidden;
-    cursor: url('../IMG/pointer.png'), auto;
+    cursor: url('../img/pointer.png'), auto;
 }
 
 
