@@ -8,7 +8,7 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
 
-
+document.body.classList.add('no-scroll');
 
 
 const media_qur = {
@@ -35,16 +35,6 @@ toggleBtn.addEventListener('click', () => {
 });
 
 
-
-
-    gsap.from(".human", {
-
-        scrollTrigger: {
-            trigger: ".hero-section",
-            start: "top top",
-            scrub:true,
-        }
-    })
 
 
     const titles = document.querySelectorAll('.inner-title h2');
@@ -76,11 +66,13 @@ gsap.timeline()
 gsap.to('.menupath', {
     attr: { startOffset: "25%" },
     duration: 2,
+    zIndex: 10,
     ease: "power1.inOut", // 이징 함수
 })
 
 gsap.to('.menu-ellipse', {
     y:"-20%",
+    zIndex:10,
     duration : 2,
     scrollTrigger:{
         trigger:".header",
@@ -142,26 +134,34 @@ gsap.to('.menu-ellipse', {
         }
     })
 
+    const eyes = document.querySelector('.eyes');
 
-    document.addEventListener('mousemove', (event) => {
-        const eyes = document.querySelector('.eyes');
+    const throttle = (callback, delay) => {
+        let lastTime = 0;
+        return (...args) => {
+            const now = Date.now();
+            if (now - lastTime >= delay) {
+                lastTime = now;
+                callback(...args);
+            }
+        };
+    };
+    
+    const handleMouseMove = throttle((event) => {
         const rect = eyes.getBoundingClientRect();
-
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-
+    
         let offsetX = (event.clientX - centerX) * 0.1;
         let offsetY = (event.clientY - centerY) * 0.1;
-
-        // Limit the x-axis movement to a maximum of 20px
+    
         offsetX = Math.max(Math.min(offsetX, 20), -20);
-
-        // Limit the y-axis movement to a maximum of 30px
         offsetY = Math.max(Math.min(offsetY, 30), -30);
-
+    
         eyes.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
-    });
-
+    }, 16); // 60FPS 제한
+    
+    document.addEventListener('mousemove', handleMouseMove);
 
     gsap.to(".move-bar", {
         x: "40px",
@@ -364,7 +364,7 @@ gsap.to('.menu-ellipse', {
         x: "100%",
     });
 
-    const aboutSection = document.querySelector(".about-section")
+
 
     gsap.to(".human",{
         left: "10%",
@@ -378,22 +378,25 @@ gsap.to('.menu-ellipse', {
     })
 
     gsap.to(".human", {
-        left: "50%",
+        x: "90%",
         y: "0%",
-
+        duration: 3,
         scale: 0.7,
 
         scrollTrigger: {
-            trigger: aboutSection,
-            start: "top 80%",
-            end: "top top",
+            trigger: ".about-section",
+            start: "top bottom",
+            end : "top top",
+            
             scrub: true,
+            markers:true,
         },
 
     })
 
+    
+
     gsap.to(".human", {
-        left:"50%",
         y: "100%",
 
         scrollTrigger: {
