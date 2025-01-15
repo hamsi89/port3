@@ -1,0 +1,681 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "mont";
+    src: url(../CSS/assets/font/MontserratAlternates-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "mont";
+    src: url(../CSS/assets/font/MontserratAlternates-Black.ttf);
+    font-weight: 900;
+}
+@font-face {
+    font-family: "mont";
+    src: url(../CSS/assets/font/MontserratAlternates-Bold.ttf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: "mont";
+    src: url(../CSS/assets/font/MontserratAlternates-SemiBold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "pre";
+    src: url(../CSS/assets/font/Pretendard-Bold.woff2);
+}
+
+@font-face {
+    font-family: "pre-nomal";
+    src: url(../CSS/assets/font/MontserratAlternates-Regular.ttf);
+}
+
+/* @font-face {
+    font-family: "zero";
+    src: url(../CSS/assets/font/ZeroGothic.otf);
+}
+
+@font-face {
+    font-family: "bum";
+    src: url(../CSS/assets/font/HS봄바람체2.0.ttf);
+}
+
+@font-face {
+    font-family: "dnf";
+    src: url(../CSS/assets/font/DNFBitBitOTF.otf);
+}
+@font-face {
+    font-family: "impact";
+    src: url(../CSS/assets/font/impact.ttf);
+}
+@font-face {
+    font-family: "archivo";
+    src: url(../CSS/assets/font/Archivo-VariableFont_wdth\,wght.ttf);
+}
+
+ */
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "mont";
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+a{
+    text-decoration: none;    
+    color: inherit;
+}
+
+
+li{
+    list-style: none;
+}
+
+:root{
+    --black-color : #333333;
+    --white-color : #F8F8F8;
+    --bg-white-color : #F5F5F5;
+    --gray-color : #f8f8f871;
+}
+
+body{
+    background-color: var(--bg-white-color);
+    color :var(--black-color);
+    overflow-x: hidden;
+}
+
+
+.inner{
+    max-width: 1080px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+}
+
+.bg-line-wrap{
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    padding:0 15rem;
+    z-index: -1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bg-line-wrap .bg-line{
+    width: 1px;
+    height: 100%;
+    border: 1px #3333335b dotted;
+}
+
+.human{
+    position: fixed;
+    z-index: -1 ;
+    left: -13%;
+}
+
+.human svg{
+    width: 80%;
+}
+
+.human .nomal-human{
+    display: block;
+}
+
+.human .super-human{
+    display: none;
+}
+
+.header{
+    width: 100%;
+    margin-top: 10rem;
+}
+
+.header .inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .inner .header-title{
+    background-color: var(--black-color);
+
+}
+
+.header .inner .header-title p{
+    color: var(--white-color);
+    font-family: 'mont';
+    font-weight: 800;
+    font-size : 3rem;
+    padding: 1rem 2rem;
+}
+
+.header .inner .header-text{
+    font-family: 'mont';
+    font-weight: 800;
+    font-size : 3rem;
+}
+
+.header .header-right{
+    display: flex;
+    align-items: center;
+}
+
+.header .header-mode{
+    border: 1px solid #333333;
+    padding: 1rem 2rem;
+    
+}
+
+
+.header .header-mode .slide{
+    width: 10rem;
+    height: 4rem;
+    background-color: #D9D9D9;
+    position: relative;
+    border-radius: 2rem;
+
+}
+
+.header .header-mode .mode-btn{
+    position: absolute;
+    top:50%;
+    left:20%;
+    transform: translate(-50%,-50%);
+
+}
+
+.header .menu-btn{
+    height: 4rem;
+    text-align: center;
+    border: 1px solid #333333;
+}
+
+
+
+.hero-section .inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    position: relative;
+    border: 1px solid var(--black-color);
+  
+}
+
+.hero-section .inner .inner-title{
+
+    width: 100%;
+    font-weight: 900;
+
+}
+.hero-section .inner .inner-title h2{
+    text-align: center;
+    font-size: 15rem;
+    color:var(--black-color);
+   
+}
+.hero-section .inner .inner-title .sub-title{
+    text-align: right;
+    margin-right: 2rem;
+}
+
+.hero-section .inner .inner-title span{
+    width: 100%;
+    text-align: right;
+    font-size: 6rem;
+    font-weight: 800;
+}
+
+.hero-section .inner .inner-title .sub-title span:nth-child(2){
+    text-decoration: underline;
+    
+}
+
+.line-wrap{
+   display: flex;
+   flex-direction: column;
+   gap: 6rem;
+   margin-top: 6rem;
+   margin-bottom: 6rem;
+
+}
+
+.line-wrap .line{
+    width: 100%;
+    background-color: var(--black-color);
+
+}
+
+.line-wrap .line-01{width: 100%; height: 1px;}
+.line-wrap .line-02{width: 100%; height: 2px;}
+.line-wrap .line-03{width: 100%; height: 4px;}
+.line-wrap .line-04{width: 100%; height: 8px;}
+
+.project-section{
+    padding-top: 2rem;
+    position: relative;
+  
+}
+
+.project-section .inner{
+    overflow: hidden;
+}
+
+.project-section .section-item{
+    width: 100%;
+    right: 0;
+     z-index: -10;
+   
+}
+.project-section .section-item img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.project-section .inner .section-title{
+    background-color: var(--black-color);
+    z-index: 10;
+    position: relative;
+}
+   
+
+.project-section .inner .section-title h3{
+    font-size: 12rem;
+    font-weight: 900;
+    color: var(--white-color);
+    padding: 0 2rem;
+}
+
+.project-section .project-wrap .project{    
+    max-width: 1080px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    background-color: var(--white-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.project-section .inner .project-wrap .project .project-title{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white-color);
+    padding: 2rem 2rem;
+    align-items: center;
+    border-bottom: 1px solid var(--black-color);
+}
+
+.project-section .project-name{
+    display: flex;
+    align-items: center;
+}
+
+.project-section .project-logo img{
+    width: 80%;
+    object-fit: scale-down;
+
+}
+
+.project-section .project-name p {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+
+.project-section .project-screen{
+    overflow: hidden;
+    height: 80vh;
+    position: relative;
+    z-index: -1;
+    
+}
+
+ .project-section .project-screen.first{
+    height: 80rem;
+} 
+
+.project-section .project-screen .image{
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+
+}
+.project-section .project-screen .image img{
+    width: 90%;
+    box-shadow: 10px 10px 0 0#333333;
+    object-fit: cover;
+}
+
+.project-section .project-position{
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.project-section .ex-btn a{
+    padding: 1rem 3rem;
+    background-color: var(--black-color);
+    display: flex;
+    align-items: center;
+    border-radius: 2rem;
+}
+
+
+.project-section .btn-wrap{
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+
+.project-section .btn-wrap .btn a{
+  border: 1px solid var(--black-color);
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+  background-color: var(--white-color);
+}
+
+.project-section .btn-wrap .btn a::after{
+    content: '';
+    background-color: var(--black-color);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:0;
+    border-radius: 2rem;
+    z-index: -1;
+}
+
+.project-section .project-info{
+    margin-top: 1rem;
+}
+.project-section .project-info span{
+    font-size: 2rem;
+}
+
+.video-section{
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+    position: relative;
+    
+}
+
+
+.video-section .section-title{
+    background-color: var(--black-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.video-section .section-title h3{
+    color: var(--white-color);
+    font-size: 12rem;
+    font-weight: 900;
+}
+
+.video-section .section-item{
+    padding: 2rem;
+    position: absolute;
+    right: -80%;
+    z-index: -1;
+    transform: translateX(-50%);
+    height: 100%;
+}
+
+
+.video-section .film-icon img{
+   
+    object-fit: cover;
+}
+
+
+.video-section .video{
+    display: flex;
+    align-items: center;
+    padding: 5rem 2rem;
+    border: 1px solid var(--black-color);
+    background-color: var(--white-color);
+}
+
+
+.video-section .video-info{
+    margin-left: 2rem;
+}
+
+.video-section .video .video-info .video-position{
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.video-section .btn{
+    border: 1px solid var(--black-color);
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+    background-color: var(--white-color);
+  }
+
+.video-section .video-name p{
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.video-section .video-view-btn a{
+    font-size: 3rem;
+}
+
+.skill-section{
+    height: 100vh;
+}
+
+.skill-section .section-title{
+    font-size: 20rem;
+    font-weight: 900;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+
+
+.skill-section .skill-wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.skill-section .skill{
+    position: absolute;
+    display: flex;  
+    top: 50%;
+    left: 21.475vw ;
+    transform: translateY(-50%);
+
+}
+
+.skill-section .skill .skill-title{
+    background-color: var(--black-color);
+    border-radius: 2rem 0 0 2rem;
+    height: 34.17vw;
+    padding: 5rem 1rem;
+    position: relative;
+    width: 15.4rem;
+}
+
+.skill-section .skill .skill-title p{
+    font-size: 5rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--white-color);
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%);
+}
+.skill-section .skill .skill-title h5{
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 5.5rem;
+    font-weight: 800;
+    color: var(--white-color);
+    text-align: center;
+}
+
+.skill-section .skill-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid var(--black-color);
+    background-color: var(--white-color);
+}
+
+.skill-section .skill-info .text{
+    margin-left: 2rem;
+}
+
+.skill-section .skill-info .text .icon-wrap{
+    display: flex;
+    gap:2rem
+}
+
+.skill-section .skill-info .text span{
+    font-size: 4rem;
+    font-family: "pre";
+}
+
+.about-section {
+    position: relative;
+}
+
+.about-section .section-title{
+    width: 100%;
+    font-size: 30rem;
+    text-wrap-mode: nowrap;
+    z-index: -2;
+    font-weight: 900;
+  text-align: center;
+    margin-bottom: 10rem;
+}
+
+.about-section .section-title p{
+    font-size: 5rem;
+    font-family: "pre";
+}
+
+.about-section .inner{
+    max-width: 1440px;
+    width: calc(100% - 40px);
+    position: relative;
+    height: 100vh;
+}
+
+
+.about-section .item-wrap{
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-section .item-wrap .left,.right{
+   width: 40%;
+
+}
+
+.about-section .item-wrap .right{
+    text-align: right;
+}
+
+.about-section .item{
+    margin-bottom: 6rem;
+}
+
+.about-section .item p{
+    font-size: 5rem;
+    font-family: "pre";
+}
+
+.about-section .item span{
+    display: block;
+    font-size:3rem;
+    font-family: "pre-nomal";
+}
+
+.about-section .icon-wrap{
+    width: 100%;
+    margin: 0 auto;
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.about-section .icon-wrap .icon {
+    position: relative;
+    transform-origin: center;
+  }
+  .footer{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+.footer .inner{
+    background-color: #333333;
+    font-family: "mont";
+    font-weight: 900;
+    padding: 10rem;
+}
+
+.footer .inner .contact .title p{
+    font-size: 4rem;
+    color: var(--white-color);
+    margin-bottom: 2.5rem;
+}
+
+.footer .inner .contact .num-mail{
+    display: flex;
+    gap: 10%;
+    margin-bottom: 4rem;
+}
+.footer .inner .contact .num-mail p{
+    font-size: 2rem;
+    color: var(--gray-color)
+}
+.footer .inner .contact .num-mail span{
+    display: block;
+    font-size: 3rem;
+    color: var(--white-color);
+    text-decoration: underline;
+}
+
+.footer .inner .big-text p{
+    font-size: 10rem;
+    color: var(--white-color);
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.footer .inner .copy p{
+    text-align: center;
+    font-family: "pre-nomal";
+    color: var(--white-color);
+    font-size: 1.8rem;
+}
