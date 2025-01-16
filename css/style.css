@@ -159,6 +159,10 @@
     font-size: 62.5%;
 }
 
+html{
+    overflow-x: hidden;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -1109,9 +1113,7 @@ body {
 }
 
 @media screen and (max-width:1024px) {
-    .human{
-        display: none;
-    }
+  
     .human{
         z-index: -1;
         width: 100%;   
@@ -1192,9 +1194,7 @@ body {
 }  
 
 @media screen and (max-width:960px) {
-    .bg{
-        display: none;
-    }
+
     .video-section .btn{
         font-size: 1.8rem;
     }
@@ -1217,7 +1217,9 @@ body {
 }
 
 @media screen and (max-width:540px) {
-   
+   .bg{
+    display: none;
+   }
     .human{
         display: none;
     }

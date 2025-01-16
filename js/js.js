@@ -1,4 +1,4 @@
-const lenis = new Lenis()
+/* const lenis = new Lenis()
 
 lenis.on('scroll', ScrollTrigger.update)
 
@@ -9,7 +9,7 @@ gsap.ticker.add((time)=>{
 gsap.ticker.lagSmoothing(0);
 
 document.body.classList.add('no-scroll');
-
+ */
 
 const media_qur = {
     moba : "(max-width: 430px)",
@@ -279,47 +279,68 @@ gsap.to('.menu-ellipse', {
 
     const imageWrap = document.querySelector('.image-wrap');
 
-    let isDragging = false;
-    let startX = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
 
-    const images = document.querySelectorAll('.image-wrap img');
-    images.forEach((img) => {
-        img.setAttribute('draggable', false);
-    });
+const images = document.querySelectorAll('.image-wrap img');
+images.forEach((img) => {
+    img.setAttribute('draggable', false);
+});
 
+// 공통 함수
+function startDrag(x) {
+    isDragging = true;
+    startX = x; // 드래그 시작 지점
+    imageWrap.style.cursor = 'grabbing';
+}
 
-    imageWrap.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.pageX; // 드래그 시작 지점
-        imageWrap.style.cursor = 'grabbing';
-    });
+function stopDrag() {
+    isDragging = false;
+    prevTranslate = currentTranslate; // 드래그 종료 후 위치 저장
+    imageWrap.style.cursor = 'grab';
+}
 
-    imageWrap.addEventListener('mouseup', () => {
-        isDragging = false;
-        prevTranslate = currentTranslate; // 드래그 종료 후 위치 저장
-        imageWrap.style.cursor = 'grab';
-    });
+function moveDrag(x) {
+    if (!isDragging) return;
+    const movementX = x - startX; // 이동한 거리 계산
+    currentTranslate = prevTranslate + movementX;
 
-    imageWrap.addEventListener('mouseleave', () => {
-        if (isDragging) {
-            isDragging = false;
-            prevTranslate = currentTranslate;
-            imageWrap.style.cursor = 'grab';
-        }
-    });
+    // 이동 적용
+    imageWrap.style.transform = `translateX(${currentTranslate}px)`;
+}
 
-    imageWrap.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
+// 데스크톱 이벤트
+imageWrap.addEventListener('mousedown', (e) => {
+    startDrag(e.pageX);
+});
 
-        const currentX = e.pageX;
-        const movementX = currentX - startX; // 이동한 거리 계산
-        currentTranslate = prevTranslate + movementX;
+imageWrap.addEventListener('mouseup', () => {
+    stopDrag();
+});
 
-        // 이동 적용
-        imageWrap.style.transform = `translateX(${currentTranslate}px)`;
-    });
+imageWrap.addEventListener('mouseleave', () => {
+    if (isDragging) stopDrag();
+});
+
+imageWrap.addEventListener('mousemove', (e) => {
+    moveDrag(e.pageX);
+});
+
+// 모바일 터치 이벤트
+imageWrap.addEventListener('touchstart', (e) => {
+    startDrag(e.touches[0].pageX);
+});
+
+imageWrap.addEventListener('touchend', () => {
+    stopDrag();
+});
+
+imageWrap.addEventListener('touchmove', (e) => {
+    moveDrag(e.touches[0].pageX);
+});
+
 
     const skillSection = document.querySelector(".skill-section");
     const icon01 = skillSection.querySelector(".icon-01")
@@ -435,14 +456,7 @@ gsap.to('.menu-ellipse', {
               { y: "100%" }, // 초기 상태
               { y: "0", duration: 1,stagger: 0.2 } // 최종 상태
             ) 
-            .fromTo(
-              ".skill-02 .icon-wrap .icon",
-              { y: "100%",
-                opacity:0
-               }, // 초기 상태
-              { y: "0", duration: 1, stagger: 0.2, opacity:1  }, // 최종 상태 및 stagger 설정
-                "0.5"
-            )
+        
         
     gsap.to('.ui-bar', {
         x:"100%",
