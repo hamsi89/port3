@@ -1110,6 +1110,9 @@ body {
 
 @media screen and (max-width:1024px) {
     .human{
+        display: none;
+    }
+    .human{
         z-index: -1;
         width: 100%;   
     }
