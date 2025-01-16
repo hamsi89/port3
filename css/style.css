@@ -1214,7 +1214,9 @@ body {
 }
 
 @media screen and (max-width:540px) {
-
+    .bg{
+        display: none;
+    }
     .human{
         display: none;
     }
