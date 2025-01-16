@@ -1192,6 +1192,9 @@ body {
 }  
 
 @media screen and (max-width:960px) {
+    .bg{
+        display: none;
+    }
     .video-section .btn{
         font-size: 1.8rem;
     }
@@ -1214,9 +1217,7 @@ body {
 }
 
 @media screen and (max-width:540px) {
-    .bg{
-        display: none;
-    }
+   
     .human{
         display: none;
     }
