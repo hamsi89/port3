@@ -12,9 +12,9 @@ document.body.classList.add('no-scroll');
 
 
 const media_qur = {
-    tablet : "(max-width: 430px)",
-    moba :"(min-width: 431px) and (max-width: 1024px)",
-    tablet : "(max-width: 1025px)",
+    moba : "(max-width: 430px)",
+    tab :"(min-width: 431px) and (max-width: 1024px)",
+    pc : "(max-width: 1025px)",
 }
 
 
@@ -203,6 +203,8 @@ gsap.to('.menu-ellipse', {
         yoyo: true,
         duration: 1,
     });
+
+    
     const projectAnimation = gsap.timeline();
 
     // 각 프로젝트 애니메이션 설정
@@ -255,8 +257,8 @@ gsap.to('.menu-ellipse', {
             y: "-30%",
             scrollTrigger: {
                 trigger: e,
-                start: "top 30%",
-                end: "top top",
+                start: "top 90%",
+                end: "bottom top",
                 scrub: true,
             }
         })
@@ -267,7 +269,7 @@ gsap.to('.menu-ellipse', {
             x: "10%",
             scrollTrigger: {
                 trigger: e,
-                start: "top 50%",
+                start: "top 90%",
                 end: "bottom top",
                 scrub: true,
             }
@@ -331,39 +333,33 @@ gsap.to('.menu-ellipse', {
     const additionalLeft = "21.875vw";
 
 
-    skills.forEach((skill, index) => {
-        skill.style.left = `${additionalLeft + skillHeadWidth * index}px`;
-
-        const currentWidth = skill.offsetWidth;
-        if (index > 0) {
-            skill.style.width = `${currentWidth - additionalLeft - skillHeadWidth * index}px`;
-        }
-    });
-
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: skillSection,
-            start: "top top",
-            end: "+=2000",
-            scrub: true,
-            anticipatePin: 1,
-            pin: true,
-            markers: true,
-        },
-    });
-
-
-    tl.from(".skill-01", {
-        x: "90%",
-    });
-    tl.from(".skill-02", {
-        x: "100%",
-    });
-    tl.from(".skill-03", {
-        x: "100%",
-    });
-
+    if (window.matchMedia("(min-width: 1025px)").matches) {
+        skills.forEach((skill, index) => {
+            skill.style.left = `${additionalLeft + skillHeadWidth * index}px`;
+    
+            const currentWidth = skill.offsetWidth;
+            if (index > 0) {
+                skill.style.width = `${currentWidth - additionalLeft - skillHeadWidth * index}px`;
+            }
+        });
+    
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: skillSection,
+                start: "top top",
+                end: "+=2000",
+                scrub: true,
+                anticipatePin: 1,
+                pin: true,
+                markers: true,
+            },
+        });
+    
+        tl.from(".skill-01", { x: "90%" });
+        tl.from(".skill-02", { x: "100%" });
+        tl.from(".skill-03", { x: "100%" });
+    };
+  
 
 
     gsap.to(".human",{
@@ -377,6 +373,7 @@ gsap.to('.menu-ellipse', {
 
     })
 
+    if (window.matchMedia("(min-width: 1025px)").matches) {
     gsap.to(".human", {
         x: "90%",
         y: "0%",
@@ -393,7 +390,7 @@ gsap.to('.menu-ellipse', {
         },
 
     })
-
+    }
     
 
     gsap.to(".human", {

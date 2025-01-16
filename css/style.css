@@ -235,14 +235,14 @@ body {
     position: fixed;
     z-index: 1;
     left: 50%;
-    top : 15%;
+    bottom: 0;
     transform: translateX(-50%);
-    min-width: 844px
+   
 }
 
 .human svg {
     width: 80%;
-   
+   object-fit: cover;
 }
 
 .human .nomal-human {
@@ -262,8 +262,8 @@ body {
 }
 
 .pupil {
-    width: 30px;
-    height: 30px;
+    width: 1.5vw;
+    height: 1.5vw;
     background-color: #333333;
     border-radius: 50%;
 
@@ -882,6 +882,7 @@ body {
 .skill-section {
     width: 100%;
     height: 100vh;
+    position: relative;
 
 }
 
@@ -909,13 +910,13 @@ body {
     top: 50%;
     left: 21.475vw;
     transform: translateY(-50%);
+    
 
 }
 
 .skill-section .skill .skill-title {
     background-color: var(--black-color);
     border-radius: 2rem 0 0 2rem;
-    height: 34.17vw;
     padding: 5rem 1rem;
     position: relative;
     width: 15.4rem;
@@ -946,6 +947,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 60vh;
+    padding: 4rem 0;
     border: 1px solid var(--black-color);
     background-color: var(--white-color);
 }
@@ -1114,6 +1117,20 @@ body {
 }
 
 @media screen and (max-width:1024px) {
+    .human{
+        z-index: -1;
+        width: 100%;   
+    }
+
+    .pupil{
+        width: 3vw;
+        height: 3vw;
+    }
+
+    .project-section{
+        display: flex;
+      
+    }
     .project-section .inner .section-title h3{
         font-size: 6.25vw;
     }
@@ -1138,8 +1155,57 @@ body {
         justify-content: center;
         padding: 1rem;
     }
-
-    .video-section .bg-video{
-        height: 100vh;
+    .video-section .video{
+        align-items:center;
+        height: auto;
     }
-}   
+    
+  /*   .video-section .bg-video{
+        height: 100vh;
+    } */
+
+    .skill-section{
+        height: auto;
+        
+    }
+    .skill-section .skill {
+        position: relative;
+        left:0;
+        top:0;
+        transform: translate(0,0);
+        flex-direction: column;
+        margin-bottom: 5rem;
+    }
+
+    .skill-section .skill .skill-title{
+        width: 100%;
+        border-radius :2rem 2rem 0 0;
+    }
+    .skill-section .skill .skill-title h5{
+        writing-mode:horizontal-tb;
+        transform: rotate(0);
+        
+    }
+    
+    .skill-section .skill .skill-title p{
+        display: none;
+    }
+    .skill-section .skill-info{
+        flex-direction: column;
+        height: auto;
+    }
+    .about-section .item-wrap{
+        flex-direction: column;
+        align-items: end;
+    }
+    .about-section .item-wrap .left{
+        text-align: right;
+    }
+
+    .about-section .section-title .main span{
+        font-size: 6.5rem;
+    }
+    .about-section .section-title p{
+        font-size: 2rem;
+    }
+}  
