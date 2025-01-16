@@ -879,120 +879,112 @@ body {
     font-size: 3rem;
 }
 
-.skill-section {
+.skill-section { 
     width: 100%;
-    height: 100vh;
     position: relative;
 
-}
-
-
-.skill-section .section-title {
-    font-size: 20rem;
-    font-weight: 900;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 
 .skill-section .skill-wrap {
     width: 100%;
-    height: 100%;
-
-}
-
-.skill-section .skill {
-    position: absolute;
-    display: flex;
-    top: 50%;
-    left: 21.475vw;
-    transform: translateY(-50%);
+ 
     
-
 }
 
-.skill-section .skill .skill-title {
-    background-color: var(--black-color);
-    border-radius: 2rem 0 0 2rem;
-    padding: 5rem 1rem;
+.skill-section .skill{
+    right: 0;
     position: relative;
-    width: 15.4rem;
+    height: 100vh;
+    margin: 20rem 0;
+    width: 70vw;
+    margin-left: auto;
+    padding-right: 10%;
 }
 
-.skill-section .skill .skill-title p {
-    font-size: 5rem;
-    font-weight: 800;
-    text-align: center;
-    color: var(--white-color);
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translate(-50%);
+.skill-section .skill-title-wrap{
+    position: relative;
+    margin: 0 auto;
 }
 
-.skill-section .skill .skill-title h5 {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-size: 5.5rem;
-    font-weight: 800;
-    color: var(--white-color);
-    text-align: center;
+.skill-section .skill-title {
+    font-size: 20rem;
+    font-weight: 900;
+    z-index: 1;
+    overflow: hidden;
+    line-height: 0.7;
 }
+
+.skill-section .skill-title h6{
+    display: inline-block;
+    position: relative;
+    transform: translateY(250%)
+}
+
+.skill-section .skill-02 .skill-title{
+    text-align: right;
+}
+
 
 .skill-section .skill-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 60vh;
+    width: 50%;
     padding: 4rem 0;
-    border: 1px solid var(--black-color);
-    background-color: var(--white-color);
+    position: relative;
+    transform : translateX(50%);
 }
 
-.skill-section .skill-info .image {
-    width: 50%;
+.skill-section .skill-info .image{
+    width: 100%;
     position: relative;
+
 }
+
 
 .skill-section .skill-info .image svg {
     width: 100%;
     object-fit: cover;
+    position: relative;
+
 }
 
 .skill-section .skill-info .text {
-    width: 50%;
+   width: 100%;
 }
 
-.skill-section .skill-info .text .icon-wrap {
-    display: flex;
-    gap: 2rem
+.skill-section .skill-info .icon-wrap {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   position: absolute;
 }
 
-.skill-section .skill-info .text span {
+
+.skill-section .skill-01 .skill-info .icon-wrap .icon-01{
+    position: absolute;
+    top: 15%;
+    scale: 1.3;
+}
+
+.skill-section .skill-01 .skill-info .icon-wrap .icon-02{
+    position: absolute;
+    top: 0;
+    right: 10%;
+    scale: 1.5;
+}
+.skill-section .skill-01 .skill-info .icon-wrap .icon-03{
+    position: absolute;
+    right: 20%;
+    bottom: 20%;
+}
+
+.skill-section .skill-02 .skill-info{
+   transform: translate(20%, -10%);
+}
+
+
+.skill-section .skill-info .text p{
     font-size: 4rem;
     font-family: "pre";
-}
-
-.skill-02 .screen {
-    position: absolute;
-    background-color: white;
-    width: 70%;
-    height: 70%;
-    z-index: 1;
-    top: 48%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-}
-
-.skill-02 .screen p {
-    height: 100%;
-    font-size: 2rem;
-    color: var(--black-color);
 }
 
 .about-section {
@@ -1146,10 +1138,8 @@ body {
         width: 100%;
     }
     .project-section .project-screen{
-        height: auto;
     }
     .project-section .project-info{ 
-        display: none;
         width: 100%;
         flex-direction: column;
         justify-content: center;
@@ -1177,19 +1167,7 @@ body {
         margin-bottom: 5rem;
     }
 
-    .skill-section .skill .skill-title{
-        width: 100%;
-        border-radius :2rem 2rem 0 0;
-    }
-    .skill-section .skill .skill-title h5{
-        writing-mode:horizontal-tb;
-        transform: rotate(0);
-        
-    }
-    
-    .skill-section .skill .skill-title p{
-        display: none;
-    }
+
     .skill-section .skill-info{
         flex-direction: column;
         height: auto;
@@ -1209,3 +1187,73 @@ body {
         font-size: 2rem;
     }
 }  
+
+@media screen and (max-width:960px) {
+    .video-section .btn{
+        font-size: 1.8rem;
+    }
+    .video-section .video{
+        flex-direction: column-reverse;
+        
+    }
+    .video-section .video-name p{
+        font-size: 3rem
+    }
+
+    .video-section .video-view-btn a{
+        font-size: 2.5rem;
+    }
+
+    .video-section .video-info{
+        position: relative;
+        transform: translate(0);
+    }
+}
+
+@media screen and (max-width:540px) {
+
+    .human{
+        display: none;
+    }
+    .project-section .inner .project-wrap .project .project-title{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .project-section .project-position{
+        position: relative;
+        transform: translate(0);
+        left: 0;
+    }
+
+    .project-section .project-name p{
+        font-size: 5rem;
+    }
+    .project-section .btn-wrap{
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+    .project-section .btn-wrap .btn{
+        font-size : 1.8rem
+    }
+
+    .skill-section .skill{
+        width: 100%;
+        padding: 0;
+        margin: 0
+    }
+
+    .skill-section .skill-title{
+        font-size: 10rem;
+        text-align: center;
+        
+    }
+
+    .skill-section .skill-02 .skill-title{
+        text-align: center;
+    }
+    .skill-section .skill-02 .skill-info{
+        width: 100%;
+        transform: translate(0);
+    }
+}
+

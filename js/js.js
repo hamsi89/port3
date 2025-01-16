@@ -170,8 +170,8 @@ gsap.to('.menu-ellipse', {
         yoyo: true,
         duration: 1,
     });
-
-    gsap.to(".pointer", {
+     
+    gsap.to(".pointer.motion", {
         x: "40px",
         ease: "power1.inOut",
         repeat: -1,
@@ -249,7 +249,7 @@ gsap.to('.menu-ellipse', {
 
 
     const videoSection = document.querySelector('.video-section')
-    const videos = videoSection.querySelectorAll('video')
+    /* const videos = videoSection.querySelectorAll('video')
     const videoInfos = videoSection.querySelectorAll('.video-info')
 
     videos.forEach(e => {
@@ -275,7 +275,7 @@ gsap.to('.menu-ellipse', {
             }
         })
     });
-
+ */
 
     const imageWrap = document.querySelector('.image-wrap');
 
@@ -329,11 +329,9 @@ gsap.to('.menu-ellipse', {
 
     const skills = skillSection.querySelectorAll(".skill");
     const skillhead = skillSection.querySelector(".skill-title");
-    const skillHeadWidth = skillhead.offsetWidth;
-    const additionalLeft = "21.875vw";
 
 
-    if (window.matchMedia("(min-width: 1025px)").matches) {
+/*     if (window.matchMedia("(min-width: 1025px)").matches) {
         skills.forEach((skill, index) => {
             skill.style.left = `${additionalLeft + skillHeadWidth * index}px`;
     
@@ -359,7 +357,101 @@ gsap.to('.menu-ellipse', {
         tl.from(".skill-02", { x: "100%" });
         tl.from(".skill-03", { x: "100%" });
     };
-  
+   */
+    const skillUi = skillSection.querySelectorAll('.ui'); // 모든 .ui 요소를 선택
+
+    // GSAP 타임라인 생성
+    const Uitl = gsap.timeline({
+        repeat: -1, // 전체 타임라인을 무한 반복 
+    });
+    
+    // 각 요소를 순차적으로 추가
+    skillUi.forEach(ui => {
+        Uitl.to(ui, {
+            y: -10,          // y축으로 10px 이동
+            duration: 0.3,     // 애니메이션 지속 시간 1초
+            fill: "#EDED00", // 색상을 노란색으로 변경
+        }).to(ui, {
+            y: 0,           // 다시 원래 위치로 돌아옴
+            duration: 0.3,
+            fill: "#333333",    // 애니메이션 지속 시간 1초
+        });
+    });
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".skill-01", // 트리거 요소
+          start: "top 50%", // 스크롤 시작 지점
+          end: "top top", // 스크롤 종료 지점
+          markers: true, // 디버그 마커 표시 (필요시 제거 가능)
+          scrub:true,
+        },
+      });
+      
+      // 타임라인에 애니메이션 추가
+      timeline
+      .fromTo(
+        ".skill-01 .skill-title h6",
+        { y: "100%"}, // 초기 상태
+        { y: "0%", duration: 1, ease: "power2.out"}, // 최종 상태
+       
+      )
+
+        .fromTo(
+          ".skill-01 .image svg",
+          { y: "100%" }, // 초기 상태
+          { y: "0", duration: 1,stagger: 0.2 } // 최종 상태
+        ) 
+        .fromTo(
+          ".skill-01 .icon-wrap .icon",
+          { y: "100%",
+            opacity:0
+           }, // 초기 상태
+          { y: "0", duration: 1, stagger: 0.2, opacity:1  }, // 최종 상태 및 stagger 설정
+            "0.5"
+        );
+
+        const timeline2 = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".skill-02", // 트리거 요소
+              start: "top 50%", // 스크롤 시작 지점
+              end: "top top", // 스크롤 종료 지점
+              markers: true, // 디버그 마커 표시 (필요시 제거 가능)
+              scrub:true,
+            },
+          });
+          
+          // 타임라인에 애니메이션 추가
+          timeline2
+          .fromTo(
+            ".skill-02 .skill-title h6",
+            { y: "100%"}, // 초기 상태
+            { y: "0%", duration: 1, ease: "power2.out"}, // 최종 상태
+           
+          )
+    
+            .fromTo(
+              ".skill-02 .image svg",
+              { y: "100%" }, // 초기 상태
+              { y: "0", duration: 1,stagger: 0.2 } // 최종 상태
+            ) 
+            .fromTo(
+              ".skill-02 .icon-wrap .icon",
+              { y: "100%",
+                opacity:0
+               }, // 초기 상태
+              { y: "0", duration: 1, stagger: 0.2, opacity:1  }, // 최종 상태 및 stagger 설정
+                "0.5"
+            )
+        
+    gsap.to('.ui-bar', {
+        x:"100%",
+        duration : 2,
+        repeat : -1,
+        yoyo : true,
+        ease : "power4.inOut"
+    })
+
 
 
     gsap.to(".human",{
