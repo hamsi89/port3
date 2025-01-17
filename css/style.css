@@ -601,9 +601,6 @@ body {
 
 }
 
-.project-section .project-screen .image img:hover{
-    object-position: 100% top;
-}
 
 .project-section .project-position {
     font-size: 3rem;
@@ -639,9 +636,10 @@ body {
     position: relative;
     z-index: 1;
     background-color: var(--white-color);
-    box-shadow: 0 0 0 #3e3e3e;
     transform: translateX(0) translateY(0);
-
+    box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e, 4px 4px #3e3e3e,
+    5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;
+transform: translateX(-8px) translateY(-8px);
 
     /* 부드러운 전환 */
     transition: box-shadow 0.5s ease, transform 0.5s ease;
@@ -655,13 +653,12 @@ body {
     
 }
 
-.project-section .btn:hover {
-
+.project-section .btn:active{
+    background-color: var(--pointOrenge-color);
     transition: 0.5s ease-in-out;
-    box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e, 4px 4px #3e3e3e,
-        5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;
-    transform: translateX(-8px) translateY(-8px);
-    background-color: var(--pointOrenge-color)
+    transform: translateX(0) translateY(0);
+    box-shadow: 0 0 0 #3e3e3e;
+    
 }
 
 .project-section .project-info {
@@ -702,9 +699,8 @@ body {
     font-size: 2rem;
     color: var(--white-color);
     position: relative;
-    background: linear-gradient(90deg, var(--black-color), var(--black-color)) no-repeat;
     background-size: 0% 100%;
-    background-color: var(--white-color);
+    background-color: var(--black-color);
     padding: 2rem;
     border-radius: 20px;
     text-align: center;
