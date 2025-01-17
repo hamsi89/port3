@@ -1,4 +1,4 @@
-/* const lenis = new Lenis()
+const lenis = new Lenis()
 
 lenis.on('scroll', ScrollTrigger.update)
 
@@ -9,7 +9,7 @@ gsap.ticker.add((time)=>{
 gsap.ticker.lagSmoothing(0);
 
 document.body.classList.add('no-scroll');
- */
+ 
 
 const media_qur = {
     moba : "(max-width: 430px)",
@@ -208,30 +208,46 @@ gsap.to('.menu-ellipse', {
     const projectAnimation = gsap.timeline();
 
     // 각 프로젝트 애니메이션 설정
+    const projectSection = document.querySelector(".project-section")
     const projects = document.querySelectorAll(".project");
+    const projectTitle = projectSection.querySelector(".section-title h3")
+   
+
+    
     projects.forEach((project, index) => {
         // 프로젝트 요소 애니메이션 추가
+        projectAnimation.to(projectTitle,{
+            color:"#ff9f67"
+        })
         projectAnimation.from(project, {
+            y: 400, // 아래에서 위로 이동
+            autoAlpha: 0, // 투명도 애니메이션
+            duration: 1, // 애니메이션 지속 시간
+            ease: "power2.out", // 부드러운 애니메이션
+        });
+        
+
+        const siteImg = project.querySelector(".left");
+        projectAnimation.from(siteImg, {
             y: 400, // 아래에서 위로 이동
             autoAlpha: 0, // 투명도 애니메이션
             duration: 1, // 애니메이션 지속 시간
             ease: "power2.out", // 부드러운 애니메이션
         })
 
+        const proInfo = project.querySelectorAll(".info");
+        projectAnimation.from(proInfo, {
+            y: 400, // 아래에서 위로 이동
+            autoAlpha: 0, // 투명도 애니메이션
+            duration: 1, // 애니메이션 지속 시간
+            ease: "power2.out", // 부드러운 애니메이션
+            stagger: 0.2,
+        })
 
-
-        // 각 프로젝트의 .contribution p 애니메이션 추가
-        const contributions = project.querySelectorAll(".contribution p"); // 복수 요소 선택
-        contributions.forEach((contribution) => {
-            projectAnimation.to(contribution, {
-                backgroundSize: "100% 100%", // 배경이 완전히 채워짐
-                duration: 1, // 애니메이션 지속 시간
-                ease: "power1.inOut",
-
-            })
-                .addPause("+=0.5"); // 1초의 간격 추가
-        });
+     
     });
+
+    
 
     // ScrollTrigger 생성
     ScrollTrigger.create({
@@ -249,7 +265,7 @@ gsap.to('.menu-ellipse', {
 
 
     const videoSection = document.querySelector('.video-section')
-    /* const videos = videoSection.querySelectorAll('video')
+    const videos = videoSection.querySelectorAll('video')
     const videoInfos = videoSection.querySelectorAll('.video-info')
 
     videos.forEach(e => {
@@ -275,72 +291,29 @@ gsap.to('.menu-ellipse', {
             }
         })
     });
- */
+ 
 
-    const imageWrap = document.querySelector('.image-wrap');
+    const imageSection = document.querySelector('.image-section');
+    const imageBox = imageSection.querySelectorAll('.image img');
 
-let isDragging = false;
-let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
+    gsap.fromTo(imageBox,{
+        y:400,},
+        {y:0,
+        stagger: {
+            each: 0.2, // 기본 스태거 간격
+            amount: 2, // 전체 스태거 시간
+            from: "random", // 애니메이션 시작 순서를 랜덤하게 설정
 
-const images = document.querySelectorAll('.image-wrap img');
-images.forEach((img) => {
-    img.setAttribute('draggable', false);
-});
-
-// 공통 함수
-function startDrag(x) {
-    isDragging = true;
-    startX = x; // 드래그 시작 지점
-    imageWrap.style.cursor = 'grabbing';
-}
-
-function stopDrag() {
-    isDragging = false;
-    prevTranslate = currentTranslate; // 드래그 종료 후 위치 저장
-    imageWrap.style.cursor = 'grab';
-}
-
-function moveDrag(x) {
-    if (!isDragging) return;
-    const movementX = x - startX; // 이동한 거리 계산
-    currentTranslate = prevTranslate + movementX;
-
-    // 이동 적용
-    imageWrap.style.transform = `translateX(${currentTranslate}px)`;
-}
-
-// 데스크톱 이벤트
-imageWrap.addEventListener('mousedown', (e) => {
-    startDrag(e.pageX);
-});
-
-imageWrap.addEventListener('mouseup', () => {
-    stopDrag();
-});
-
-imageWrap.addEventListener('mouseleave', () => {
-    if (isDragging) stopDrag();
-});
-
-imageWrap.addEventListener('mousemove', (e) => {
-    moveDrag(e.pageX);
-});
-
-// 모바일 터치 이벤트
-imageWrap.addEventListener('touchstart', (e) => {
-    startDrag(e.touches[0].pageX);
-});
-
-imageWrap.addEventListener('touchend', () => {
-    stopDrag();
-});
-
-imageWrap.addEventListener('touchmove', (e) => {
-    moveDrag(e.touches[0].pageX);
-});
-
+          },
+          scrollTrigger:{
+            trigger: imageSection, // 스크롤 트리거 설정
+            start: "top 10%", // 애니메이션 시작 지점
+            end: "+=2000", // 애니메이션 종료 지점
+            scrub: true, // 스크롤에 따라 애니메이션 진행
+            pin:true,
+            ease: "bounce.out",
+          }
+    })
 
     const skillSection = document.querySelector(".skill-section");
     const icon01 = skillSection.querySelector(".icon-01")
@@ -352,33 +325,7 @@ imageWrap.addEventListener('touchmove', (e) => {
     const skillhead = skillSection.querySelector(".skill-title");
 
 
-/*     if (window.matchMedia("(min-width: 1025px)").matches) {
-        skills.forEach((skill, index) => {
-            skill.style.left = `${additionalLeft + skillHeadWidth * index}px`;
-    
-            const currentWidth = skill.offsetWidth;
-            if (index > 0) {
-                skill.style.width = `${currentWidth - additionalLeft - skillHeadWidth * index}px`;
-            }
-        });
-    
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: skillSection,
-                start: "top top",
-                end: "+=2000",
-                scrub: true,
-                anticipatePin: 1,
-                pin: true,
-                markers: true,
-            },
-        });
-    
-        tl.from(".skill-01", { x: "90%" });
-        tl.from(".skill-02", { x: "100%" });
-        tl.from(".skill-03", { x: "100%" });
-    };
-   */
+
     const skillUi = skillSection.querySelectorAll('.ui'); // 모든 .ui 요소를 선택
 
     // GSAP 타임라인 생성
@@ -466,10 +413,24 @@ imageWrap.addEventListener('touchmove', (e) => {
         ease : "power4.inOut"
     })
 
+    gsap.to(".human",{
+        opacity:0,
+        y:"100%",
+        scrollTrigger: {
+            trigger: ".project-section",
+            start: "top 50%",
+            end: "top top",
+            scrub: true,
+        },
 
+    })
 
     gsap.to(".human",{
+        width:"35%",
         left: "10%",
+        opacity :1,
+
+        y:"0",
         scrollTrigger: {
             trigger: videoSection,
             start: "top 80%",

@@ -537,12 +537,12 @@ body {
     max-width: 1440px;
     width: calc(100% - 40px);
     margin: 0 auto;
-    background-color: var(--gray-color);
+    background-color: var(--bg-white-color);
     border: 1px solid var(--black-color);
+    display: flex;
 }
 
 .project-section .inner .project-wrap .project .project-title {
-    display: flex;
     justify-content: space-between;
     background-color: var(--white-color);
     padding: 2rem 2rem;
@@ -569,7 +569,7 @@ body {
 
 .project-section .project-screen {
     overflow: hidden;
-    height: 65vh;
+    height: 80vh;
     position: relative;
     z-index: -1;
     display: flex;
@@ -582,16 +582,27 @@ body {
 
 .project-section .project-screen .image {
     width: 100%;
+    height: 100%;
     text-align: center;
     padding: 2rem 0;
-
+    background-color: var(--bg-white-color);
+    user-select: none; 
+    
 }
 
 .project-section .project-screen .image img {
     width: 90%;
+    height: 100%;
     object-fit: cover;
     border: 1px solid var(--black-color);
+    object-position: 0% 50%;
+    user-select: none; 
+    transition: object-position 5s linear;
 
+}
+
+.project-section .project-screen .image img:hover{
+    object-position: 100% top;
 }
 
 .project-section .project-position {
@@ -637,8 +648,11 @@ body {
 }
 
 .project-section .btn-wrap .btn a {
+    width: 100%;
+    height: 100%;
     font-size: 2rem;
     font-weight: 800;
+    
 }
 
 .project-section .btn:hover {
@@ -654,7 +668,7 @@ body {
     width: 30%;
     margin-top: 1rem;
     font-family: "pre";
-    background-color: var(--white-color);
+    background-color: var(--bg-white-color);
     padding: 2rem 4rem 4rem 0rem;
     display: flex;
     flex-direction: column;
@@ -816,44 +830,55 @@ body {
     font-weight: 800;
 }
 
+.image-section{
+    height: 100vh;
+}
+
 .image-section .inner {
     position: relative;
-  
 }
 
 .image-section .inner .image-wrap {
-    height: 100vh;
+    width: 100%;
+    height: 80vh;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     white-space: nowrap;
-    width: max-content;
-    position: relative;
+    position: absolute;
+    justify-content: end;
     transition: transform 0.1s ease-out;
 }
 
 
 .image-section .inner .image-wrap .image {
-    width: 100%;
-    height: 80%;
+    width: 30%;
+    height: 40rem;
     text-align: center;
     position: relative;
     transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: bottom center;
+    overflow: hidden;
 
 }
 
-.image-section .inner .image-wrap .image:hover {
-    height: 85%;
-}
+
 
 .image-section .inner .image-wrap .image img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.image-section .inner .image-wrap .image:hover .info {
+
+
+/* .image-section .inner .image-wrap .image:hover .info {
     visibility: visible;
 }
-
+ */
 .image-section .inner .image-wrap .image .info {
     width: 100%;
     height: 100%;
