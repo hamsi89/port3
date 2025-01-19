@@ -349,7 +349,7 @@ gsap.to('.menu-ellipse', {
     gsap.to('.image-scroll-text', {
         x:"-50vw",
         scrollTrigger:{
-            trigger: ".image-scroll-text",
+            trigger: ".image-section",
             start: "top bottom", //
             end: "bottom top", 
             markers: true, 
