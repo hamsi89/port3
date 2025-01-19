@@ -8,6 +8,15 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
 
+document.addEventListener("DOMContentLoaded", function() {
+    lightGallery(document.getElementById('gallery'), {
+        mode: 'lg-fade', // 페이드 전환 효과
+        speed: 500, // 전환 속도 (ms)
+        thumbnail: true, // 썸네일 표시
+        download: false // 다운로드 버튼 비활성화
+    });
+});
+
 document.body.classList.add('no-scroll');
  
 
@@ -59,7 +68,6 @@ gsap.timeline()
 
     .to(textElement, {
         fill: "currentColor", // Fill the text after stroke animation
-       
     });
 
 
@@ -155,8 +163,8 @@ gsap.to('.menu-ellipse', {
         let offsetX = (event.clientX - centerX) * 0.1;
         let offsetY = (event.clientY - centerY) * 0.1;
     
-        offsetX = Math.max(Math.min(offsetX, 20), -20);
-        offsetY = Math.max(Math.min(offsetY, 30), -30);
+        offsetX = Math.max(Math.min(offsetX, 15), -15);
+        offsetY = Math.max(Math.min(offsetY, 20), -20);
     
         eyes.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
     }, 16); // 60FPS 제한
@@ -216,9 +224,12 @@ gsap.to('.menu-ellipse', {
     
     projects.forEach((project, index) => {
         // 프로젝트 요소 애니메이션 추가
-        projectAnimation.to(projectTitle,{
-            color:"#ff9f67"
-        })
+
+        const scrollText = project.querySelector(".scroll-text");
+        
+       
+
+       
         projectAnimation.from(project, {
             y: 400, // 아래에서 위로 이동
             autoAlpha: 0, // 투명도 애니메이션
@@ -226,6 +237,11 @@ gsap.to('.menu-ellipse', {
             ease: "power2.out", // 부드러운 애니메이션
         });
         
+        projectAnimation.to(scrollText,{
+            y: "0%", // 아래에서 위로 이동
+            duration: 1, // 애니메이션 지속 시간
+            ease: "power2.out", // 부드러운 애니메이션
+        })
 
         const siteImg = project.querySelector(".left");
         projectAnimation.from(siteImg, {
@@ -282,7 +298,7 @@ gsap.to('.menu-ellipse', {
 
     videoInfos.forEach(e => {
         gsap.to(e, {
-            x: "10%",
+            x: "20%",
             scrollTrigger: {
                 trigger: e,
                 start: "top 90%",
@@ -293,26 +309,52 @@ gsap.to('.menu-ellipse', {
     });
  
 
-    const imageSection = document.querySelector('.image-section');
-    const imageBox = imageSection.querySelectorAll('.image img');
-
-    gsap.fromTo(imageBox,{
-        y:400,},
-        {y:0,
-        stagger: {
-            each: 0.2, // 기본 스태거 간격
-            amount: 2, // 전체 스태거 시간
-            from: "random", // 애니메이션 시작 순서를 랜덤하게 설정
-
-          },
-          scrollTrigger:{
-            trigger: imageSection, // 스크롤 트리거 설정
-            start: "top 10%", // 애니메이션 시작 지점
-            end: "+=2000", // 애니메이션 종료 지점
-            scrub: true, // 스크롤에 따라 애니메이션 진행
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".image-section", 
+            start: "top -20%",
+            end: "+=500",
+            scrub: true,
             pin:true,
-            ease: "bounce.out",
-          }
+        },
+    });
+    
+    tl.to(".image-section .section-title", {
+        y: "130%",
+        autoAlpha: 1,
+        opacity: 1,
+    });
+    
+    tl.from(".image-box", {
+        rotate: "-10deg",
+        x: 0,
+        y: 0,
+        stagger: {
+            amount: 0.5, // 전체 애니메이션 소요 시간
+            from: "end", // 역순으로 애니메이션 시작
+        },
+    });
+
+
+
+     const imgBox = document.querySelectorAll(".image-box");
+
+    imgBox.forEach(e => {
+        e.addEventListener('click', ()=>{
+            e.classList.toggle("active");
+        })
+    }); 
+
+
+    gsap.to('.image-scroll-text', {
+        x:"-50vw",
+        scrollTrigger:{
+            trigger: ".image-scroll-text",
+            start: "top bottom", //
+            end: "bottom top", 
+            markers: true, 
+            scrub:true,
+        }
     })
 
     const skillSection = document.querySelector(".skill-section");
@@ -350,7 +392,7 @@ gsap.to('.menu-ellipse', {
         scrollTrigger: {
           trigger: ".skill-01", // 트리거 요소
           start: "top 50%", // 스크롤 시작 지점
-          end: "top top", // 스크롤 종료 지점
+          end: "bottom top", // 스크롤 종료 지점
           markers: true, // 디버그 마커 표시 (필요시 제거 가능)
           scrub:true,
         },
@@ -375,7 +417,7 @@ gsap.to('.menu-ellipse', {
           { y: "100%",
             opacity:0
            }, // 초기 상태
-          { y: "0", duration: 1, stagger: 0.2, opacity:1  }, // 최종 상태 및 stagger 설정
+          { y: "0", duration: 1, stagger: 0.5, opacity:1  }, // 최종 상태 및 stagger 설정
             "0.5"
         );
 
@@ -383,7 +425,7 @@ gsap.to('.menu-ellipse', {
             scrollTrigger: {
               trigger: ".skill-02", // 트리거 요소
               start: "top 50%", // 스크롤 시작 지점
-              end: "top top", // 스크롤 종료 지점
+              end: "bottom top", // 스크롤 종료 지점
               markers: true, // 디버그 마커 표시 (필요시 제거 가능)
               scrub:true,
             },
@@ -394,14 +436,14 @@ gsap.to('.menu-ellipse', {
           .fromTo(
             ".skill-02 .skill-title h6",
             { y: "100%"}, // 초기 상태
-            { y: "0%", duration: 1, ease: "power2.out"}, // 최종 상태
+            { y: "0", duration: 0.5, ease: "power2.out"}, // 최종 상태
            
           )
     
-            .fromTo(
+          timeline2.fromTo(
               ".skill-02 .image svg",
-              { y: "100%" }, // 초기 상태
-              { y: "0", duration: 1,stagger: 0.2 } // 최종 상태
+              { y: "70%",}, // 초기 상태
+              { y: "-50%", duration: 2,stagger: 0.2,} // 최종 상태
             ) 
         
         
@@ -440,13 +482,24 @@ gsap.to('.menu-ellipse', {
 
     })
 
+    gsap.to(".human",{
+        y:"100%",
+        scrollTrigger: {
+            trigger: ".image-section",
+            start: "top 50%",
+            end: "top top",
+            scrub: true,
+        },
+
+    })
+
     if (window.matchMedia("(min-width: 1025px)").matches) {
     gsap.to(".human", {
-        x: "90%",
+        x: "129%",
         y: "0%",
+        width:"30%",
         duration: 3,
-        scale: 0.7,
-
+     
         scrollTrigger: {
             trigger: ".about-section",
             start: "top bottom",
@@ -469,8 +522,21 @@ gsap.to('.menu-ellipse', {
             end: "top top",
             scrub: true,
         },
-    })
+    });
 
+    const aboutSection = document.querySelector(".about-seciton")
+    
+    gsap.to(".main span", {
+        opacity:1,
+        stagger:0.2,
+        scrollTrigger:{
+            trigger:".about-section",
+            start:"top top",
+            end:"+=500",
+           scrub:true,
+            pin:true,
+        }
+    })
 
 
     const jelloHorizontal = () => {
