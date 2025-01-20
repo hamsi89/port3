@@ -7,16 +7,6 @@ gsap.ticker.add((time)=>{
 })
 
 gsap.ticker.lagSmoothing(0);
-
-document.addEventListener("DOMContentLoaded", function() {
-    lightGallery(document.getElementById('gallery'), {
-        mode: 'lg-fade', // 페이드 전환 효과
-        speed: 500, // 전환 속도 (ms)
-        thumbnail: true, // 썸네일 표시
-        download: false // 다운로드 버튼 비활성화
-    });
-});
-
 document.body.classList.add('no-scroll');
  
 
@@ -26,6 +16,19 @@ const media_qur = {
     pc : "(max-width: 1025px)",
 }
 
+gsap.fromTo(
+    ".box",
+    {
+        y: "-200%",
+
+    },
+    {
+        y: 0,
+        duration: 1, // 각 애니메이션의 지속시간
+        stagger: 0.2, // 순차적 시작 (0.2초 간격)
+        ease: "bounce.out", // 흔들리는 효과
+    }
+);
 
 const toggleBtn = document.querySelector('.header-mode');
 
@@ -44,8 +47,6 @@ toggleBtn.addEventListener('click', () => {
 });
 
 
-
-
     const titles = document.querySelectorAll('.inner-title h2');
 
     const textElement = document.querySelector('#portfolio-text');
@@ -60,15 +61,11 @@ gsap.timeline()
        
     })
     .to(textElement, {
-        fill: "#333333", // Fill the text after stroke animation
+        fill: "#ff9f67", // Fill the text after stroke animation
         stroke: "none", // Remove stroke
         duration: 1,
         ease: "power1.inOut",
     })
-
-    .to(textElement, {
-        fill: "currentColor", // Fill the text after stroke animation
-    });
 
 
 gsap.to('.menupath', {
@@ -90,19 +87,7 @@ gsap.to('.menu-ellipse', {
     }
 })
 
-    gsap.fromTo(
-        ".box",
-        {
-            y: -200,
 
-        },
-        {
-            y: 0,
-            duration: 1, // 각 애니메이션의 지속시간
-            stagger: 0.2, // 순차적 시작 (0.2초 간격)
-            ease: "bounce.out", // 흔들리는 효과
-        }
-    );
 
     gsap.to(".box", {
         y: -200, // 위로 이동
@@ -115,6 +100,10 @@ gsap.to('.menu-ellipse', {
             onEnterBack: () => gsap.to(".box", { y: 0, duration: 1 }), // 되돌릴 때 y: 0
         },
     });
+
+
+
+
 
 
     gsap.fromTo(".line",
@@ -179,6 +168,15 @@ gsap.to('.menu-ellipse', {
         duration: 1,
     });
      
+    new TypeIt(".type-it", {
+        strings: ["Hello, World?", "Just Scroll!!"],
+        deleteSpeed: 50,
+        speed: 50,
+        breakLines: false,
+        nextStringDelay: 1000,
+      }).go();
+    
+
     gsap.to(".pointer.motion", {
         x: "40px",
         ease: "power1.inOut",
@@ -186,6 +184,8 @@ gsap.to('.menu-ellipse', {
         yoyo: true,
         duration: 1,
     });
+
+    
 
     gsap.to(".ae-icon", {
         motionPath: {
@@ -211,6 +211,139 @@ gsap.to('.menu-ellipse', {
         yoyo: true,
         duration: 1,
     });
+
+    const aboutSection = document.querySelector(".about-section");
+const aboutTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".page-01",
+        start: "top top",
+        end: "+=3000",
+        scrub: true,
+        pin: true,
+    }
+});
+
+// Sub-timelines
+const mainAnimation = gsap.timeline();
+mainAnimation
+    .fromTo(".page-01 .main span", {
+        y: "-100%"
+    }, {
+        y: "0",
+        stagger: {
+            each: 0.2,
+            from: "random"
+        }
+    })
+    .to(".page-01 .main", {
+        opacity: 1,
+        stagger: 0.2
+    })
+    .to(".page-01 .main span", {
+        y: "-100%",
+        stagger: {
+            each: 0.2,
+            from: "random"
+        }
+    });
+
+const subAnimation = gsap.timeline();
+subAnimation
+    .to(".page-01 .sub span", {
+        y: "-200%",
+        opacity: 1,
+        stagger: {
+            each: 0.2
+        }
+    })
+    .to(".page-01 .sub span", {
+        y: "-500%",
+        opacity: 1,
+        stagger: {
+            each: 0.2
+        }
+    });
+
+const itemTitleAnimation = gsap.timeline();
+itemTitleAnimation
+    .to(".page-01 .item-title p", {
+        y: "-150%",
+        opacity: 1,
+        stagger: {
+            each: 0.2
+        }
+    })
+    .to(".page-01 .item-title p", {
+        y: "-150%",
+        opacity: 1,
+        stagger: {
+            each: 0.2
+        }
+    });
+
+const itemStoryAnimation = gsap.timeline();
+itemStoryAnimation
+    .to(".page-01 .item-story", {
+        y: "-40%",
+        opacity: 1
+    })
+    .to(".page-01 .item-story .item p", {
+        opacity: 1,
+        scale: 1,
+        stagger: {
+            each: 0.4
+        }
+    });
+
+// Adding sub-timelines to the main timeline
+aboutTl
+    .add(mainAnimation)
+    .add(subAnimation)
+    .add(itemTitleAnimation)
+    .add(itemStoryAnimation);
+
+    
+
+
+    const aboutTl2 = gsap.timeline({
+        scrollTrigger:{
+            trigger:".page-02",
+            start:"top top",
+            end:"+=2000",
+           scrub:true,
+            pin:true,
+        }
+    })
+ 
+ 
+   aboutTl2.fromTo(".page-02 .main span",{
+    y:"-200%"},{
+    y:"0",
+    stagger:0.2,
+    stagger: {
+        each: 0.2, 
+        from: "random", 
+        }
+})
+  
+
+    aboutTl2.to(".page-02 .main", {
+        opacity:1,
+        stagger:0.2,
+        
+    });
+    
+    aboutTl2.to(".page-02 .main span",{
+        y:"-100%",
+        stagger: {
+            each: 0.2, 
+            from: "random", 
+            }
+    })
+
+
+
+
 
     
     const projectAnimation = gsap.timeline();
@@ -274,7 +407,7 @@ gsap.to('.menu-ellipse', {
         scrub: true, // 스크롤과 동기화
         pin: true, // 섹션 고정
         anticipatePin: 1, // 핀 동작 예측
-        markers: false, // 디버그 마커 숨김
+       
         stagger: 1, // 각 프로젝트 간 0.3초의 간격 추가
     });
 
@@ -329,6 +462,7 @@ gsap.to('.menu-ellipse', {
         rotate: "-10deg",
         x: 0,
         y: 0,
+        duration :2,
         stagger: {
             amount: 0.5, // 전체 애니메이션 소요 시간
             from: "end", // 역순으로 애니메이션 시작
@@ -337,22 +471,13 @@ gsap.to('.menu-ellipse', {
 
 
 
-     const imgBox = document.querySelectorAll(".image-box");
-
-    imgBox.forEach(e => {
-        e.addEventListener('click', ()=>{
-            e.classList.toggle("active");
-        })
-    }); 
-
-
     gsap.to('.image-scroll-text', {
         x:"-50vw",
         scrollTrigger:{
             trigger: ".image-section",
             start: "top bottom", //
             end: "bottom top", 
-            markers: true, 
+       
             scrub:true,
         }
     })
@@ -393,7 +518,7 @@ gsap.to('.menu-ellipse', {
           trigger: ".skill-01", // 트리거 요소
           start: "top 50%", // 스크롤 시작 지점
           end: "bottom top", // 스크롤 종료 지점
-          markers: true, // 디버그 마커 표시 (필요시 제거 가능)
+     
           scrub:true,
         },
       });
@@ -426,7 +551,7 @@ gsap.to('.menu-ellipse', {
               trigger: ".skill-02", // 트리거 요소
               start: "top 50%", // 스크롤 시작 지점
               end: "bottom top", // 스크롤 종료 지점
-              markers: true, // 디버그 마커 표시 (필요시 제거 가능)
+             
               scrub:true,
             },
           });
@@ -481,22 +606,11 @@ gsap.to('.menu-ellipse', {
         },
 
     })
-
-    gsap.to(".human",{
-        y:"100%",
-        scrollTrigger: {
-            trigger: ".image-section",
-            start: "top 50%",
-            end: "top top",
-            scrub: true,
-        },
-
-    })
-
+/*
     if (window.matchMedia("(min-width: 1025px)").matches) {
     gsap.to(".human", {
-        x: "129%",
-        y: "0%",
+        x: "134%",
+        y: "10%",
         width:"30%",
         duration: 3,
      
@@ -512,32 +626,62 @@ gsap.to('.menu-ellipse', {
     })
     }
     
+ */
+ 
+
 
     gsap.to(".human", {
-        y: "100%",
+        y: "-80%",
+        x: "120%",
+        scale:0.4,
+        scaleX: -1,
+
 
         scrollTrigger: {
-            trigger: ".footer",
+            trigger: ".footer .inner",
             start: "top bottom",
             end: "top top",
             scrub: true,
+            markers:true,
         },
     });
 
-    const aboutSection = document.querySelector(".about-seciton")
-    
-    gsap.to(".main span", {
-        opacity:1,
-        stagger:0.2,
-        scrollTrigger:{
-            trigger:".about-section",
-            start:"top top",
-            end:"+=500",
-           scrub:true,
-            pin:true,
-        }
-    })
 
+
+    const icons = aboutSection.querySelectorAll('.icon');
+
+    // 전체 애니메이션 객체를 저장할 배열
+    const animations = [];
+    
+    // 각 아이콘에 대해 애니메이션 설정
+    icons.forEach((icon, index) => {
+        const animation = gsap.to(icon, {
+            motionPath: {
+                path: '#circlePath',
+                align: '#circlePath',
+                alignOrigin: [0.5, 0.5],
+                start: index / icons.length * 10,
+                end: (index + 1) / icons.length * 10,
+            },
+            duration: 15,
+            repeat: -1,
+            ease: "none"
+        });
+    
+        // 애니메이션 객체 저장
+        animations.push(animation);
+    });
+    
+    // 전체 애니메이션 일시 정지 및 재개 처리
+    icons.forEach((icon) => {
+        icon.addEventListener('mouseenter', () => {
+            animations.forEach(animation => animation.timeScale(0.2)); // 전체 애니메이션 정지
+        });
+    
+        icon.addEventListener('mouseleave', () => {
+            animations.forEach(animation => animation.timeScale(1)); // 전체 애니메이션 재개
+        });
+    });
 
     const jelloHorizontal = () => {
         gsap.timeline({
