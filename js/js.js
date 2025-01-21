@@ -700,8 +700,7 @@ aboutTl
             trigger: ".footer .inner",
             start: "top bottom",
             end: "top top",
-            scrub: true,
-            markers:true,
+            scrub: true
         },
     });
 

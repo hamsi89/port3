@@ -433,7 +433,8 @@ body {
 .menu-bar .bar-mode-btn{
     width: 3rem;
     height: 3rem;
-
+    display: flex;
+    align-items: center;
 }
 .menu-bar .bar-mode-btn .theme-night{
     display: none;
@@ -841,7 +842,7 @@ transform: translateX(-8px) translateY(-8px);
     align-items: center;
     font-size: 2rem;
     font-weight: 800;
-    
+    text-align: center;
 }
 
 .project-section .btn:hover{
