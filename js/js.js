@@ -24,45 +24,47 @@ gsap.fromTo(
     },
     {
         y: 0,
-        duration: 1, // 각 애니메이션의 지속시간
-        stagger: 0.2, // 순차적 시작 (0.2초 간격)
-        ease: "bounce.out", // 흔들리는 효과
+        duration: 1,
+        stagger: 0.2,
+        ease: "bounce.out", 
     }
+
 );
+const toggleBtns = document.querySelectorAll('.mode-btn'); 
+const bartoggleBtn = document.querySelector('.bar-mode-btn'); 
+const root = document.documentElement; 
 
-const toggleBtn = document.querySelector('.header-mode');
+toggleBtns.forEach((toggleBtn) => {
+  toggleBtn.addEventListener('click', () => {
+    const isDarkMode = root.classList.contains('dark-mode');
 
-
-toggleBtn.addEventListener('click', () => {
-  const root = document.documentElement;
-  console.log('Button clicked!'); // 로그 출력
-
-  if (root.classList.contains('dark-mode')) {
-    root.classList.remove('dark-mode');
-    toggleBtn.classList.remove('dark-mode');
-  } else {
-    root.classList.add('dark-mode');
-    toggleBtn.classList.add('dark-mode');
-  }
+    if (isDarkMode) {
+      root.classList.remove('dark-mode');
+      toggleBtns.forEach((btn) => btn.classList.remove('dark-mode')); 
+      if (bartoggleBtn) bartoggleBtn.classList.remove('dark-mode');
+    } else {
+      root.classList.add('dark-mode');
+      toggleBtns.forEach((btn) => btn.classList.add('dark-mode')); 
+      if (bartoggleBtn) bartoggleBtn.classList.add('dark-mode');
+    }
+  });
 });
-
-
     const titles = document.querySelectorAll('.inner-title h2');
 
     const textElement = document.querySelector('#portfolio-text');
 
-// GSAP animation for SVG text stroke
+
 gsap.timeline()
     .to(textElement, {
-        strokeDashoffset: 0, // Reveal the stroke
-        opacity: 1, // Fade in the text
-        duration: 2, // Animation duration
+        strokeDashoffset: 0,
+        opacity: 1, 
+        duration: 2, 
         ease: "power1.inOut",
        
     })
     .to(textElement, {
-        fill: "#ff9f67", // Fill the text after stroke animation
-        stroke: "none", // Remove stroke
+        fill: "#ff9f67", 
+        stroke: "none", 
         duration: 1,
         ease: "power1.inOut",
     })
@@ -72,7 +74,7 @@ gsap.to('.menupath', {
     attr: { startOffset: "25%" },
     duration: 2,
     zIndex: 10,
-    ease: "power1.inOut", // 이징 함수
+    ease: "power1.inOut", 
 })
 
 gsap.to('.menu-ellipse', {
@@ -90,20 +92,48 @@ gsap.to('.menu-ellipse', {
 
 
     gsap.to(".box", {
-        y: -200, // 위로 이동
+        y: -200, 
         duration: 2,
         scrollTrigger: {
             trigger: ".header",
             start: "top top",
             end: "bottom top",
             scrub: true,
-            onEnterBack: () => gsap.to(".box", { y: 0, duration: 1 }), // 되돌릴 때 y: 0
+            onEnterBack: () => gsap.to(".box", { y: 0, duration: 1 }), 
         },
     });
 
+   
+document.addEventListener("DOMContentLoaded", () => {
+    // 버튼 클래스와 섹션 클래스 매핑
+    const buttonSectionMap = [
+        { buttonClass: ".about-btn", targetClass: ".about-section" },
+        { buttonClass: ".work-btn", targetClass: ".project-section" },
+        { buttonClass: ".skill-btn", targetClass: ".skill-section" },
+    ];
 
+    // 스크롤 이벤트 설정
+    buttonSectionMap.forEach(({ buttonClass, targetClass }) => {
+        const buttons = document.querySelectorAll(buttonClass);
+        const targetSection = document.querySelector(targetClass);
 
-
+        if (targetSection) {
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    // GSAP를 이용한 부드러운 스크롤
+                    gsap.to(window, {
+                        duration: 1.5, // 애니메이션 지속 시간 (초)
+                        scrollTo: {
+                            y: targetSection, // 타겟 섹션
+                            offsetY: 0, // 스크롤 오프셋 (필요시 조정)
+                        },
+                        ease: "power2.out", // Ease 효과
+                    });
+                });
+            });
+        }
+    });
+});
 
 
     gsap.fromTo(".line",
@@ -111,7 +141,7 @@ gsap.to('.menu-ellipse', {
             width: "0%",
         }, {
         width: "100%",
-        duration: 1, // 각 애니메이션의 지속시간
+        duration: 1, 
         stagger: 0.2,
 
         scrollTrigger: {
@@ -156,8 +186,8 @@ gsap.to('.menu-ellipse', {
         offsetY = Math.max(Math.min(offsetY, 20), -20);
     
         eyes.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
-    }, 16); // 60FPS 제한
-    
+    }, 16);
+
     document.addEventListener('mousemove', handleMouseMove);
 
     gsap.to(".move-bar", {
@@ -177,13 +207,6 @@ gsap.to('.menu-ellipse', {
       }).go();
     
 
-    gsap.to(".pointer.motion", {
-        x: "40px",
-        ease: "power1.inOut",
-        repeat: -1,
-        yoyo: true,
-        duration: 1,
-    });
 
     
 
@@ -217,7 +240,7 @@ const aboutTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".page-01",
         start: "top top",
-        end: "+=3000",
+        end: "+=5000",
         scrub: true,
         pin: true,
     }
@@ -252,6 +275,7 @@ subAnimation
     .to(".page-01 .sub span", {
         y: "-200%",
         opacity: 1,
+        duration : 2,
         stagger: {
             each: 0.2
         }
@@ -346,9 +370,7 @@ aboutTl
 
 
     
-    const projectAnimation = gsap.timeline();
-
-    // 각 프로젝트 애니메이션 설정
+    const projectAnimation = gsap.timeline({});
     const projectSection = document.querySelector(".project-section")
     const projects = document.querySelectorAll(".project");
     const projectTitle = projectSection.querySelector(".section-title h3")
@@ -356,7 +378,7 @@ aboutTl
 
     
     projects.forEach((project, index) => {
-        // 프로젝트 요소 애니메이션 추가
+     
 
         const scrollText = project.querySelector(".scroll-text");
         
@@ -364,32 +386,32 @@ aboutTl
 
        
         projectAnimation.from(project, {
-            y: 400, // 아래에서 위로 이동
-            autoAlpha: 0, // 투명도 애니메이션
-            duration: 1, // 애니메이션 지속 시간
-            ease: "power2.out", // 부드러운 애니메이션
+            y: 400, 
+            autoAlpha: 0, 
+            duration: 1, 
+            ease: "power2.out", 
         });
         
         projectAnimation.to(scrollText,{
-            y: "0%", // 아래에서 위로 이동
-            duration: 1, // 애니메이션 지속 시간
-            ease: "power2.out", // 부드러운 애니메이션
+            y: "0%", 
+            duration: 1, 
+            ease: "power2.out",
         })
 
         const siteImg = project.querySelector(".left");
         projectAnimation.from(siteImg, {
-            y: 400, // 아래에서 위로 이동
-            autoAlpha: 0, // 투명도 애니메이션
-            duration: 1, // 애니메이션 지속 시간
-            ease: "power2.out", // 부드러운 애니메이션
+            y: 400, 
+            autoAlpha: 0,
+            duration: 1,
+            ease: "power2.out",
         })
 
         const proInfo = project.querySelectorAll(".info");
         projectAnimation.from(proInfo, {
-            y: 400, // 아래에서 위로 이동
-            autoAlpha: 0, // 투명도 애니메이션
-            duration: 1, // 애니메이션 지속 시간
-            ease: "power2.out", // 부드러운 애니메이션
+            y: 400, 
+            autoAlpha: 0, 
+            duration: 4, 
+            ease: "power2.out",
             stagger: 0.2,
         })
 
@@ -398,17 +420,55 @@ aboutTl
 
     
 
-    // ScrollTrigger 생성
+
     ScrollTrigger.create({
         animation: projectAnimation,
         trigger: ".project-section",
-        start: "top top", // 섹션이 뷰포트 상단에 닿으면 시작
-        end: "+=5000", // 전체 애니메이션 지속 길이
-        scrub: true, // 스크롤과 동기화
-        pin: true, // 섹션 고정
-        anticipatePin: 1, // 핀 동작 예측
+        start: "top top", 
+        end: "+=5000",
+        scrub: true, 
+        pin: true,
+        anticipatePin: 1, 
        
-        stagger: 1, // 각 프로젝트 간 0.3초의 간격 추가
+        stagger: 1, 
+    });
+
+    const hoverTargets = document.querySelectorAll('.hover-target');
+    const hoverText = document.querySelector('.hover-text');
+  
+    // 마우스 움직임에 따라 hover-text 위치 이동
+    document.addEventListener("mousemove", (e) => {
+      gsap.to(hoverText, {
+        x: e.clientX - 70,
+        y: e.clientY - 20,
+        duration: 0.1, // 부드러운 움직임
+      });
+    });
+  
+    // hover-target 위에 마우스가 들어오면 hover-text 보이기
+    hoverTargets.forEach(target => {
+      target.addEventListener('mouseenter', () => {
+        gsap.to(hoverText, {
+          opacity: 1, // 보이게 하기
+          duration: 0.3, // 페이드 효과
+        });
+      });
+  
+      // hover-target에서 마우스가 나가면 hover-text 숨기기
+      target.addEventListener('mouseleave', () => {
+        gsap.to(hoverText, {
+          opacity: 0, // 숨기기
+          duration: 0.3, // 페이드 효과
+        });
+      });
+    });
+  
+    gsap.to(".pointer.motion", {
+        x: "40px",
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+        duration: 1,
     });
 
 
@@ -464,12 +524,13 @@ aboutTl
         y: 0,
         duration :2,
         stagger: {
-            amount: 0.5, // 전체 애니메이션 소요 시간
-            from: "end", // 역순으로 애니메이션 시작
+            amount: 0.5, 
+            from: "end", 
         },
     });
-
-
+    const imageSection = document.querySelector('.image-section');
+    const imageBoxs = imageSection.querySelectorAll('.image-box');
+    
 
     gsap.to('.image-scroll-text', {
         x:"-50vw",
@@ -493,82 +554,80 @@ aboutTl
 
 
 
-    const skillUi = skillSection.querySelectorAll('.ui'); // 모든 .ui 요소를 선택
+    const skillUi = skillSection.querySelectorAll('.ui'); 
 
-    // GSAP 타임라인 생성
     const Uitl = gsap.timeline({
-        repeat: -1, // 전체 타임라인을 무한 반복 
+        repeat: -1, 
     });
     
-    // 각 요소를 순차적으로 추가
+    
     skillUi.forEach(ui => {
         Uitl.to(ui, {
-            y: -10,          // y축으로 10px 이동
-            duration: 0.3,     // 애니메이션 지속 시간 1초
-            fill: "#EDED00", // 색상을 노란색으로 변경
+            y: -10,          
+            duration: 0.3,    
+            fill: "#EDED00", 
         }).to(ui, {
-            y: 0,           // 다시 원래 위치로 돌아옴
+            y: 0,          
             duration: 0.3,
-            fill: "#333333",    // 애니메이션 지속 시간 1초
+            fill: "#333333",   
         });
     });
 
     const timeline = gsap.timeline({
         scrollTrigger: {
-          trigger: ".skill-01", // 트리거 요소
-          start: "top 50%", // 스크롤 시작 지점
-          end: "bottom top", // 스크롤 종료 지점
+          trigger: ".skill-01", 
+          start: "top 50%", 
+          end: "bottom top",
      
           scrub:true,
         },
       });
       
-      // 타임라인에 애니메이션 추가
+ 
       timeline
       .fromTo(
         ".skill-01 .skill-title h6",
-        { y: "100%"}, // 초기 상태
-        { y: "0%", duration: 1, ease: "power2.out"}, // 최종 상태
-       
+        { y: "100%"},
+        { y: "0%", duration: 1, ease: "power2.out"}, 
       )
 
         .fromTo(
           ".skill-01 .image svg",
-          { y: "100%" }, // 초기 상태
-          { y: "0", duration: 1,stagger: 0.2 } // 최종 상태
+          { y: "100%" }, 
+          { y: "0", duration: 1,stagger: 0.2 },
         ) 
         .fromTo(
           ".skill-01 .icon-wrap .icon",
           { y: "100%",
             opacity:0
-           }, // 초기 상태
-          { y: "0", duration: 1, stagger: 0.5, opacity:1  }, // 최종 상태 및 stagger 설정
+           }, 
+          { y: "0", duration: 1, stagger: 0.5, opacity:1  },
             "0.5"
         );
 
         const timeline2 = gsap.timeline({
             scrollTrigger: {
-              trigger: ".skill-02", // 트리거 요소
-              start: "top 50%", // 스크롤 시작 지점
-              end: "bottom top", // 스크롤 종료 지점
+              trigger: ".skill-02",
+              start: "top 50%",
+              end: "bottom top",
              
               scrub:true,
             },
           });
           
-          // 타임라인에 애니메이션 추가
+          
           timeline2
           .fromTo(
             ".skill-02 .skill-title h6",
-            { y: "100%"}, // 초기 상태
-            { y: "0", duration: 0.5, ease: "power2.out"}, // 최종 상태
+            { y: "100%"}, 
+            { y: "0", duration: 0.5, ease: "power2.out"}, 
            
           )
     
           timeline2.fromTo(
               ".skill-02 .image svg",
-              { y: "70%",}, // 초기 상태
-              { y: "-50%", duration: 2,stagger: 0.2,} // 최종 상태
+              { y: "70%",}, 
+              { y: "-50%", duration: 2,stagger: 0.2,} 
             ) 
         
         
@@ -649,11 +708,9 @@ aboutTl
 
 
     const icons = aboutSection.querySelectorAll('.icon');
-
-    // 전체 애니메이션 객체를 저장할 배열
     const animations = [];
     
-    // 각 아이콘에 대해 애니메이션 설정
+ 
     icons.forEach((icon, index) => {
         const animation = gsap.to(icon, {
             motionPath: {
@@ -668,27 +725,27 @@ aboutTl
             ease: "none"
         });
     
-        // 애니메이션 객체 저장
+   
         animations.push(animation);
     });
     
-    // 전체 애니메이션 일시 정지 및 재개 처리
+
     icons.forEach((icon) => {
         icon.addEventListener('mouseenter', () => {
-            animations.forEach(animation => animation.timeScale(0.2)); // 전체 애니메이션 정지
+            animations.forEach(animation => animation.timeScale(0.2)); 
         });
     
         icon.addEventListener('mouseleave', () => {
-            animations.forEach(animation => animation.timeScale(1)); // 전체 애니메이션 재개
+            animations.forEach(animation => animation.timeScale(1)); 
         });
     });
 
     const jelloHorizontal = () => {
         gsap.timeline({
             scrollTrigger: {
-                trigger: ".footer", // 트리거 요소
-                start: "top 80%",   // 트리거 시작 위치
-                toggleActions: "play none none none", // 애니메이션 재생 설정
+                trigger: ".footer", 
+                start: "top 80%",   
+                toggleActions: "play none none none",
             },
         })
             .to(".footer", { scaleX: 1.25, scaleY: 0.75, duration: 0.2, ease: "power1.inOut" })
