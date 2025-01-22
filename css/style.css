@@ -247,7 +247,26 @@ body {
     width: 40%;
 }
 
+.human .point-01{
+    position: absolute;
+    z-index: 100;
+    top: -13%;
+    left:23%;
+}
+.human .point-02{
+    position: absolute;
+    z-index: -1;
+    width: 700px;
+    bottom: 0;
+    left:-17%;
+}
 
+.human .point-02 img{
+    width: 700px;
+}
+.human .point-03{
+
+}
 
 .human svg {
     width: 80%;
@@ -1202,10 +1221,8 @@ transform: translateX(-8px) translateY(-8px);
     right: 0;
     position: relative;
     height: 100vh;
-    margin: 20rem 0;
+    margin: 0 20rem;
     width: 70vw;
-    margin-left: auto;
-    padding-right: 10%;
 }
 
 .skill-section .skill-title-wrap{
@@ -1231,12 +1248,16 @@ transform: translateX(-8px) translateY(-8px);
     text-align: right;
 }
 
+.skill-section .skill-02{
+    margin-left: auto;
+    transform: translateY(-20%);
+}
 
 .skill-section .skill-info {
     width: 50%;
     padding: 4rem 0;
     position: relative;
-    transform : translateX(50%);
+ 
 }
 
 .skill-section .skill-info .image{
@@ -1284,7 +1305,7 @@ transform: translateX(-8px) translateY(-8px);
 }
 
 .skill-section .skill-02 .skill-info{
-   transform: translate(20%, -10%);
+   transform: translate(100%, 0%);
 }
 
 
@@ -1366,16 +1387,9 @@ transform: translateX(-8px) translateY(-8px);
   
 }
 
-/* .about-section .item-wrap .item-story .item .point{
-    position: absolute;
-    z-index: 100;
-    transform: translateZ(10);
-}
- */
-.about-section .item-wrap .item-story .item .point-01{
-    transform: translate(-50%);
-    z-index: 100;
-}
+
+ 
+
 
 .about-section .item-wrap .item-story .item p{
    opacity: 0.2;
