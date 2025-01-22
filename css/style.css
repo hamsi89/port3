@@ -253,6 +253,7 @@ body {
     width: 80%;
    object-fit: cover;
    fill: transparent;
+   display: block;
 }
 
 
@@ -304,6 +305,18 @@ body {
     background-color: #333333;
     border-radius: 50%;
 
+}
+
+.modal{
+    width: 100%;
+    height: 100vh;
+    background-color: #333333f5;
+    position: fixed;
+    visibility: hidden;
+}
+
+.modal.active{
+    visibility: visible;
 }
 
 .header {
@@ -944,8 +957,6 @@ transform: translateX(-8px) translateY(-8px);
     position: relative;
 }
 
-.video-section .inner {}
-
 
 .video-section .section-title {
     background-color: var(--black-color);
@@ -1046,7 +1057,7 @@ transform: translateX(-8px) translateY(-8px);
     font-size: 3rem;
     border-radius: 0;
     border: 0;
-    background: linear-gradient(90deg, var(--black-color), var(--pointOrenge-color));
+    background: linear-gradient(90deg, var(--black-color)50%, var(--pointOrenge-color) 50%);
     background-size: 200% 100%;
     color: var(--white-color);
     position: relative;
@@ -1064,13 +1075,47 @@ transform: translateX(-8px) translateY(-8px);
     position: relative;
 }
 
+.image-section .bigimg-wrap{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 10;
+    overflow: hidden;
+    justify-content: center;
+    visibility: hidden;
+
+}
+
+.image-section .bigimg-wrap.active{
+    visibility: visible;
+}
+
+.image-section .bigimg-wrap .image{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,100%);
+    transition: 0.3s;
+    margin: 0 auto;
+}
+
+.image-section .bigimg-wrap .image.active{
+    transform: translate(-50%,-50%);
+}
+
+.image-section .bigimg-wrap .image img{
+    height: 70vh;
+
+}
+
 .image-section .image-scroll-text{
     display: flex;
     gap: 3rem;
     background-color: var(--pointOrenge-color);
     padding: 4rem 0;
     position: absolute;
-    top: 60%;
+    top: 50%;
     
 }
 
@@ -1089,6 +1134,7 @@ transform: translateX(-8px) translateY(-8px);
 }
 .image-section .section-title{
     position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -1105,7 +1151,7 @@ transform: translateX(-8px) translateY(-8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(5%);
+    transform: translate(5%, -50%);
 }
 
 
@@ -1144,24 +1190,7 @@ transform: translateX(-8px) translateY(-8px);
     transition: 0.5s;
 }
 
-.image-section .inner .bigimg-wrap{
-    width: 40%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform:translate(-50%,-50%)
-}
 
-.image-section .inner .bigimg-wrap .bigimg{
-    position: absolute;
-    width: 100%;
-}
-
-.image-section .inner .bigimg-wrap .bigimg img{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
 
 .skill-section .skill-wrap {
     width: 100%;
@@ -1266,6 +1295,7 @@ transform: translateX(-8px) translateY(-8px);
 
 .about-section {
     position: relative;
+    
 }
 
 .about-section .section-title {
@@ -1335,6 +1365,18 @@ transform: translateX(-8px) translateY(-8px);
     text-align: right;
   
 }
+
+/* .about-section .item-wrap .item-story .item .point{
+    position: absolute;
+    z-index: 100;
+    transform: translateZ(10);
+}
+ */
+.about-section .item-wrap .item-story .item .point-01{
+    transform: translate(-50%);
+    z-index: 100;
+}
+
 .about-section .item-wrap .item-story .item p{
    opacity: 0.2;
    scale: 0.7;
@@ -1379,9 +1421,11 @@ transform: translateX(-8px) translateY(-8px);
 }
 
 .about-section .icon-ring .icon{
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
 }
+
+
 
 
 

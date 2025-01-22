@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { buttonClass: ".skill-btn", targetClass: ".skill-section" },
     ];
 
-    // 스크롤 이벤트 설정
+
     buttonSectionMap.forEach(({ buttonClass, targetClass }) => {
         const buttons = document.querySelectorAll(buttonClass);
         const targetSection = document.querySelector(targetClass);
@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (targetSection) {
             buttons.forEach(button => {
                 button.addEventListener("click", () => {
-                    // GSAP를 이용한 부드러운 스크롤
                     gsap.to(window, {
                         duration: 1.5, // 애니메이션 지속 시간 (초)
                         scrollTo: {
@@ -505,28 +504,30 @@ aboutTl
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: ".image-section", 
-            start: "top -20%",
-            end: "+=500",
+            start: "top top",
+            end: "+=1000",
             scrub: true,
             pin:true,
         },
     });
     
     tl.to(".image-section .section-title", {
-        y: "130%",
+        y: "-100%",
         autoAlpha: 1,
         opacity: 1,
+        duration:1,
     });
     
     tl.from(".image-box", {
         rotate: "-10deg",
         x: 0,
         y: 0,
-        duration :2,
+        duration :5,
         stagger: {
             amount: 0.5, 
             from: "end", 
         },
+       
     });
     const imageSection = document.querySelector('.image-section');
     const imageBoxs = imageSection.querySelectorAll('.image-box');
@@ -687,7 +688,42 @@ aboutTl
     
  */
  
+    const bigImageWrap = document.querySelector(".bigimg-wrap");
+    const bigImages = bigImageWrap.querySelectorAll(".image");
+    const imageBoxes = document.querySelectorAll(".box-wrap .image-box img");
+    const modal = document.querySelector(".modal")
 
+    // 스크롤 이벤트 핸들러
+    function handleScroll() {
+        if (bigImageWrap.classList.contains("active")) {
+            bigImageWrap.classList.remove("active");
+            bigImages.forEach(img => img.classList.remove("active"));
+            modal.classList.remove("active")
+    
+            window.removeEventListener("scroll", handleScroll); // 스크롤 이벤트 제거
+        }
+    }
+
+    // 이미지 박스 클릭 시 동작
+    imageBoxes.forEach((imageBox, index) => {
+        imageBox.addEventListener("click", function () {
+            bigImages.forEach(img => img.classList.remove("active"));
+            bigImages[index].classList.add("active");
+            bigImageWrap.classList.add("active");
+            modal.classList.add("active")
+
+            window.addEventListener("scroll", handleScroll); // 스크롤 이벤트 등록
+        });
+    });
+
+    // 빅이미지 클릭 시 초기 상태로 복귀
+    bigImageWrap.addEventListener("click", function () {
+        bigImageWrap.classList.remove("active");
+        bigImages.forEach(img => img.classList.remove("active"));
+        modal.classList.remove("active")
+     
+        window.removeEventListener("scroll", handleScroll); // 스크롤 이벤트 제거
+    });
 
     gsap.to(".human", {
         y: "-80%",
@@ -716,10 +752,10 @@ aboutTl
                 path: '#circlePath',
                 align: '#circlePath',
                 alignOrigin: [0.5, 0.5],
-                start: index / icons.length * 10,
-                end: (index + 1) / icons.length * 10,
+                start: index / icons.length,
+                end: (index + 1) / icons.length,
             },
-            duration: 15,
+            duration: 15    ,
             repeat: -1,
             ease: "none"
         });
