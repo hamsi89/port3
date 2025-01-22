@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             buttons.forEach(button => {
                 button.addEventListener("click", () => {
                     gsap.to(window, {
-                        duration: 1.5, // 애니메이션 지속 시간 (초)
+                        duration: 2.5, // 애니메이션 지속 시간 (초)
                         scrollTo: {
                             y: targetSection, // 타겟 섹션
                             offsetY: 0, // 스크롤 오프셋 (필요시 조정)
